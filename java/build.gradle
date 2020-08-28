@@ -1,4 +1,21 @@
-apply plugin: "java"
-apply plugin: "application"
+plugins {
+  id "java"
+  id "application"
+}
 
 mainClassName = "chapter01.Main"
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+    events "passed", "skipped", "failed"
+  }
+}
