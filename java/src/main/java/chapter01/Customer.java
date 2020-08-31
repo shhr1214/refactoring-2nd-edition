@@ -25,10 +25,7 @@ class Customer {
         Enumeration rentals = _rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while (rentals.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-
-            thisAmount = each.getCharge();
 
             // レンタルポイントを加算
             frequentRentalPoints++;
@@ -37,8 +34,8 @@ class Customer {
                 frequentRentalPoints++;
 
             // この貸し出しに関する数値の表示
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
         }
 
 
