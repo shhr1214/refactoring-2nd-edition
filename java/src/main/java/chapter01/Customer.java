@@ -29,10 +29,27 @@ class Customer {
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
         }
 
-
         // フッタ部分の追加
         result += "Amount owed is " + String.valueOf(this.getTotalCharge()) + "\n";
         result += "You earned " + String.valueOf(this.getTotalFrequentRenterPoints()) + " frequent renter points";
+
+        return result;
+    }
+
+    public String htmlStatement() {
+        Enumeration rentals = _rentals.elements();
+        String result = "<H1>Rental Record for <EM>" + getName() + "</EM></H1><P>\n";
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+
+            // この貸し出しに関する数値の表示
+            result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n";
+        }
+
+        // フッタ部分の追加
+        result += "<P>You owed <EM>" + String.valueOf(this.getTotalCharge()) + "</EM><P>\n";
+        result += "On this rental you earned <EM>" + String.valueOf(this.getTotalFrequentRenterPoints())
+                + "</EM> frequent renter points<P>";
 
         return result;
     }
