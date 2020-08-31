@@ -28,7 +28,7 @@ class Customer {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
 
-            thisAmount = amountFor(each);
+            thisAmount = each.getCharge();
 
             // レンタルポイントを加算
             frequentRentalPoints++;
@@ -47,9 +47,5 @@ class Customer {
         result += "You earned " + String.valueOf(frequentRentalPoints) + " frequent renter points";
 
         return result;
-    }
-
-    private double amountFor(Rental aRental) {
-        return aRental.getCharge();
     }
 }
