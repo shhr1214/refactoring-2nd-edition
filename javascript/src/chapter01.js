@@ -1,4 +1,17 @@
 const statement = function statement(invoice, plays) {
+  let result = `Statement for ${invoice.customer}\n`;
+
+  for (let perf of invoice.performances) {
+    // 注文の内訳を出力
+    result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${
+      perf.audience
+    } seats)\n`;
+  }
+
+  result += `Amount owed is ${usd(totalAmount())}\n`;
+  result += `You earned ${totalVolumuCredits()} credits\n`;
+  return result;
+
   function totalAmount() {
     let result = 0;
     for (let perf of invoice.performances) {
@@ -57,19 +70,6 @@ const statement = function statement(invoice, plays) {
 
     return result;
   }
-
-  let result = `Statement for ${invoice.customer}\n`;
-
-  for (let perf of invoice.performances) {
-    // 注文の内訳を出力
-    result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${
-      perf.audience
-    } seats)\n`;
-  }
-
-  result += `Amount owed is ${usd(totalAmount())}\n`;
-  result += `You earned ${totalVolumuCredits()} credits\n`;
-  return result;
 };
 
 export { statement };
