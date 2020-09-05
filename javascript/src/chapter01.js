@@ -1,4 +1,4 @@
-exports.statement = function statement(invoice, plays) {
+const statement = function statement(invoice, plays) {
   function format(aNumber) {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -60,3 +60,5 @@ exports.statement = function statement(invoice, plays) {
   result += `You earned ${volumeCredits} credits\n`;
   return result;
 };
+
+export { statement };

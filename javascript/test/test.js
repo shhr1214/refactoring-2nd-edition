@@ -1,6 +1,5 @@
-const assert = require("assert");
-
-const chapter01 = require("../src/chapter01");
+import assert from "assert";
+import { statement } from "../src/chapter01.js";
 
 const plays = {
   hamlet: {
@@ -39,7 +38,7 @@ const invoices = [
 
 describe("Statement", () => {
   it("test", () => {
-    const result = chapter01.statement(invoices[0], plays);
+    const result = statement(invoices[0], plays);
     const expect = `Statement for BigCo
  Hamlet: $650.00 (55 seats)
  As You Like It: $580.00 (35 seats)
