@@ -1,5 +1,5 @@
 const statement = function statement(invoice, plays) {
-  function appleSource() {
+  function totalAmount() {
     let totalAmount = 0;
     for (let perf of invoice.performances) {
       totalAmount += amountFor(perf);
@@ -66,9 +66,8 @@ const statement = function statement(invoice, plays) {
       perf.audience
     } seats)\n`;
   }
-  let totalAmount = appleSource();
 
-  result += `Amount owed is ${usd(totalAmount)}\n`;
+  result += `Amount owed is ${usd(totalAmount())}\n`;
   result += `You earned ${totalVolumuCredits()} credits\n`;
   return result;
 };
