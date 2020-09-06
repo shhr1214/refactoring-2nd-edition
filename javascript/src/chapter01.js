@@ -1,11 +1,12 @@
 const statement = function statement(invoice, plays) {
   const statementData = {};
+  statementData.customer = invoice.customer;
 
   return renderPlainText(statementData, invoice, plays);
 };
 
 const renderPlainText = function statement(data, invoice, plays) {
-  let result = `Statement for ${invoice.customer}\n`;
+  let result = `Statement for ${data.customer}\n`;
 
   for (let perf of invoice.performances) {
     // 注文の内訳を出力
