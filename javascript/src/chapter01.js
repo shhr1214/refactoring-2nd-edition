@@ -1,4 +1,4 @@
-const statement = function statement(invoice, plays) {
+function statement(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
   statementData.performances = invoice.performances.map(enrichPerformance);
@@ -13,9 +13,9 @@ const statement = function statement(invoice, plays) {
   function playFor(aPerformance) {
     return plays[aPerformance.playID];
   }
-};
+}
 
-const renderPlainText = function statement(data, plays) {
+function renderPlainText(data, plays) {
   let result = `Statement for ${data.customer}\n`;
 
   for (let perf of data.performances) {
@@ -87,6 +87,6 @@ const renderPlainText = function statement(data, plays) {
 
     return result;
   }
-};
+}
 
 export { statement };
