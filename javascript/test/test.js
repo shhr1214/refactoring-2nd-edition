@@ -1,5 +1,5 @@
 import assert from "assert";
-import { statement } from "../src/chapter01.js";
+import { statement } from "../src/statement.js";
 
 const plays = {
   hamlet: {
