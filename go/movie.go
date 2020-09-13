@@ -76,21 +76,7 @@ func (c Customer) Statement() string {
 	result := fmt.Sprintf("Rental Record for %s\n", c.GetName())
 
 	for _, v := range rentals {
-		thisAmount := 0.0
-		switch v.GetMovie().GetPriceCode() {
-		case REGULAR:
-			thisAmount += 2.0
-			if v.GetDaysRented() > 2 {
-				thisAmount += float64(v.GetDaysRented()-2) * 1.5
-			}
-		case NEW_RELEASE:
-			thisAmount += float64(v.GetDaysRented() * 3)
-		case CHILDREN:
-			thisAmount += 1.5
-			if v.GetDaysRented() > 3 {
-				thisAmount += float64(v.GetDaysRented()-3) * 1.5
-			}
-		}
+		thisAmount := amountFor(v)
 
 		frequentRenterPoints++
 		if v.GetMovie().GetPriceCode() == NEW_RELEASE &&
@@ -105,4 +91,24 @@ func (c Customer) Statement() string {
 	result = fmt.Sprintf("%sAmount owed is %.1f\n", result, totalAmount)
 	result = fmt.Sprintf("%sYou earned %d frequent renter points\n", result, frequentRenterPoints)
 	return result
+}
+
+func amountFor(r Rental) float64 {
+	thisAmount := 0.0
+	switch r.GetMovie().GetPriceCode() {
+
+	case REGULAR:
+		thisAmount += 2.0
+		if r.GetDaysRented() > 2 {
+			thisAmount += float64(r.GetDaysRented()-2) * 1.5
+		}
+	case NEW_RELEASE:
+		thisAmount += float64(r.GetDaysRented() * 3)
+	case CHILDREN:
+		thisAmount += 1.5
+		if r.GetDaysRented() > 3 {
+			thisAmount += float64(r.GetDaysRented()-3) * 1.5
+		}
+	}
+	return thisAmount
 }
