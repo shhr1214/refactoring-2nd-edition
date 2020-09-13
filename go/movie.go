@@ -76,7 +76,7 @@ func (c Customer) Statement() string {
 	result := fmt.Sprintf("Rental Record for %s\n", c.GetName())
 
 	for _, v := range rentals {
-		thisAmount := amountFor(v)
+		thisAmount := v.amountFor()
 
 		frequentRenterPoints++
 		if v.GetMovie().GetPriceCode() == NEW_RELEASE &&
@@ -93,7 +93,7 @@ func (c Customer) Statement() string {
 	return result
 }
 
-func amountFor(r Rental) float64 {
+func (r Rental) amountFor() float64 {
 	var result float64
 	switch r.GetMovie().GetPriceCode() {
 	case REGULAR:
