@@ -1,6 +1,6 @@
 import createStatementData from "./createStatementData.js";
 
-function statement(invoice, plays) {
+export function statement(invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
 }
 
@@ -8,7 +8,6 @@ function renderPlainText(data) {
   let result = `Statement for ${data.customer}\n`;
 
   for (let perf of data.performances) {
-    // 注文の内訳を出力
     result += ` ${perf.play.name}: ${usd(perf.amount)} (${
       perf.audience
     } seats)\n`;
@@ -46,5 +45,3 @@ function usd(aNumber) {
     minimumFractionDigits: 2,
   }).format(aNumber / 100);
 }
-
-export { statement };
