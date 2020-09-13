@@ -32,6 +32,13 @@ export default function createStatementData(invoice, plays) {
 }
 
 function createPerformanceCalculator(aPerformance, aPlay) {
+  switch (aPlay.type) {
+    case "tragedy":
+      return new TragedyCalculator(aPerformance, aPlay);
+    case "comedy":
+      return new ComedyCalculator(aPerformance, aPlay);
+  }
+
   return new PerformanceCalculator(aPerformance, aPlay);
 }
 
@@ -72,3 +79,7 @@ class PerformanceCalculator {
     return result;
   }
 }
+
+class TragedyCalculator extends PerformanceCalculator {}
+
+class ComedyCalculator extends PerformanceCalculator {}
