@@ -83,16 +83,13 @@ func (c Customer) Statement() string {
 			if v.GetDaysRented() > 2 {
 				thisAmount += float64(v.GetDaysRented()-2) * 1.5
 			}
-			break
 		case NEW_RELEASE:
 			thisAmount += float64(v.GetDaysRented() * 3)
-			break
 		case CHILDREN:
 			thisAmount += 1.5
 			if v.GetDaysRented() > 3 {
 				thisAmount += float64(v.GetDaysRented()-3) * 1.5
 			}
-			break
 		}
 
 		frequentRenterPoints++
