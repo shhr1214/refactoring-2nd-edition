@@ -94,21 +94,20 @@ func (c Customer) Statement() string {
 }
 
 func amountFor(r Rental) float64 {
-	thisAmount := 0.0
+	var result float64
 	switch r.GetMovie().GetPriceCode() {
-
 	case REGULAR:
-		thisAmount += 2.0
+		result += 2.0
 		if r.GetDaysRented() > 2 {
-			thisAmount += float64(r.GetDaysRented()-2) * 1.5
+			result += float64(r.GetDaysRented()-2) * 1.5
 		}
 	case NEW_RELEASE:
-		thisAmount += float64(r.GetDaysRented() * 3)
+		result += float64(r.GetDaysRented() * 3)
 	case CHILDREN:
-		thisAmount += 1.5
+		result += 1.5
 		if r.GetDaysRented() > 3 {
-			thisAmount += float64(r.GetDaysRented()-3) * 1.5
+			result += float64(r.GetDaysRented()-3) * 1.5
 		}
 	}
-	return thisAmount
+	return result
 }
